@@ -8,7 +8,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:password@db:5432/weatherdb
       - REDIS_URL=redis://redis:6379
-      - API_KEY=1f43801cdd66cd5ce82110dbe025a13f
+      - API_KEY="enter the api key form you source, how to genrate api key mentioned in readme.md file"
     depends_on:
       - db
       - redis
