@@ -143,23 +143,33 @@ Open your browser and go to `http://localhost:5000` or `http://serverip:5000` to
   ```bash
   podman-compose logs web
   ```
-  <img width="938" alt="image" src="https://github.com/user-attachments/assets/bd763a58-a3cc-4871-a6fd-390a43b9006b">
-
+  
 - **Test API Integration:** Use tools like `curl` or Postman to test the OpenWeather API.
   ```bash
   curl "http://api.openweathermap.org/data/2.5/weather?q=Pune&units=metric&appid=your_openweather_api_key"
   ```
-
-  <img width="941" alt="image" src="https://github.com/user-attachments/assets/3c3297ed-ed20-4282-81f3-266b0a719aef">
-
-
+  ```bash
+  podman@test ~/weather_dashboard_app$ curl "http://api.openweathermap.org/data/2.5/weather?q=Pune&units=metric&appid=............api key..........."
+  {"coord":{"lon":73.8553,"lat":18.5196},"weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}],"base":"stations","main": 
+  {"temp":29.34,"feels_like":33.48,"temp_min":28.65,"temp_max":29.49,"pressure":1007,"humidity":70,"sea_level":1007,"grnd_level":946},"visibility":10000,"wind": 
+  {"speed":5.94,"deg":270,"gust":8.21},"clouds":{"all":100},"dt":1723113250,"sys": 
+  {"type":2,"id":2096426,"country":"IN","sunrise":1723077865,"sunset":1723124164},"timezone":19800,"id":1259229,"name":"Pune","cod":200}
+  ```
+  
 - **Check Environment Variables:** Make sure the API key is set correctly:
   ```bash
   podman exec -it <container_name> env
   ```
-  <img width="904" alt="image" src="https://github.com/user-attachments/assets/6e0542c6-c755-41a1-8340-107b145eed90">
-
-  
+  ```bash
+  podman@test ~/weather_dashboard_app$ podman ps
+  CONTAINER ID  IMAGE                                       COMMAND        CREATED            STATUS            PORTS                             NAMES
+  93c2d7a61586  docker.io/library/postgres:13               postgres       About an hour ago  Up About an hour  5432/tcp                          weather_dashboard_app_db_1
+  9349f61fa084  docker.io/library/redis:6                   redis-server   About an hour ago  Up About an hour  0.0.0.0:6379->6379/tcp, 6379/tcp  
+  weather_dashboard_app_redis_1
+  4e74a1ddb3f1  localhost/weather_dashboard_app_web:latest  python app.py  About an hour ago  Up About an hour  0.0.0.0:5000->5000/tcp            weather_dashboard_app_web_1
+  podman@test ~/weather_dashboard_app$ podman exec -it 4e74a1ddb3f1 env | grep API_KEY
+  API_KEY=.........api key..................
+  ```
 
 ### 📜 License
 
