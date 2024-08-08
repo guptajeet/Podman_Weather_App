@@ -1,0 +1,38 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+
+# Podman
+*.podman
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Virtual environment
+venv/
+env/
+*.egg-info/
+
+# Docker-related
+docker-compose.override.yml
+Dockerfile
+
+# Node modules (if any, though not likely for this project)
+node_modules/
+
+# IDE files
+.vscode/
+.idea/
+
+# Flask instance folder
+instance/
+
